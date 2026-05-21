@@ -1,0 +1,43 @@
+---
+import Layout from './Layout.astro';
+import { getLocaleFromUrl, getSiteConfig, localizePath } from '../config/site';
+
+interface Props {
+	title: string;
+	description: string;
+	date?: Date;
+	tags?: string[];
+}
+
+const { title, description, date, tags = [] } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const siteConfig = getSiteConfig(locale);
+const formattedDate = date?.toLocaleDateString('zh-CN', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+});
+---
+
+<Layout title={title} description={description}>
+	<article class="mx-auto max-w-3xl px-5 py-16 md:py-24">
+		<a href={localizePath(locale, Astro.url.pathname.includes('/blog') ? '/blog' : '/projects')} class="text-sm text-zinc-500 transition hover:text-white">
+			{siteConfig.ui.backToList}
+		</a>
+		<header class="mt-10 border-b border-white/10 pb-10">
+			{formattedDate && <p class="text-sm text-zinc-500">{formattedDate}</p>}
+			<h1 class="mt-4 text-4xl font-semibold tracking-normal text-white md:text-6xl">{title}</h1>
+			<p class="mt-5 text-lg leading-8 text-zinc-400">{description}</p>
+			{tags.length > 0 && (
+				<div class="mt-6 flex flex-wrap gap-2">
+					{tags.map((tag) => (
+						<span class="rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-300">{tag}</span>
+					))}
+				</div>
+			)}
+		</header>
+		<div class="prose-content mt-10">
+			<slot />
+		</div>
+	</article>
+</Layout>

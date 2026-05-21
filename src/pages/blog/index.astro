@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+import { getLocaleFromUrl, getSiteConfig } from '../../config/site';
+
+const locale = getLocaleFromUrl(Astro.url);
+const siteConfig = getSiteConfig(locale);
+const posts = (await getCollection('blog'))
+	.filter((post) => !post.data.draft && post.data.lang === locale)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const page = siteConfig.pages.blog;
+---
+
+<Layout title={page.title} description={page.description}>
+	<section class="mx-auto max-w-5xl px-5 py-20 md:py-28">
+		<SectionHeading
+			kicker={page.kicker}
+			title={page.heading}
+			description={page.intro}
+		/>
+		<div>
+			{posts.map((post) => <BlogCard post={post} />)}
+		</div>
+	</section>
+</Layout>
