@@ -188,4 +188,4 @@ npm run build
 
 ## License
 
-你可以把这个模板用于个人主页、学生作品集和实验项目。正式发布前建议补充你自己的开源协议。
+本项目基于 [GNU General Public License v3.0](./LICENSE) 开源。

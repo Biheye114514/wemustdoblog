@@ -187,4 +187,4 @@ Deploy the generated site with any static hosting platform. For Astro-specific d
 
 ## License
 
-Use this template for personal sites, student portfolios, and experiments. Add your preferred license before publishing if needed.
+This project is licensed under the [GNU General Public License v3.0](./LICENSE).
