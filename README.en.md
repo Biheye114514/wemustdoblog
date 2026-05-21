@@ -102,19 +102,19 @@ src/config/site.ts
 
 Use the `zh` config for Chinese and the `en` config for English. The Header includes an automatic language switcher.
 
-Blog and project entries use the `lang` frontmatter field:
+Blog posts use one shared content set across all languages. Projects can use the `lang` frontmatter field for Chinese and English versions:
 
 ```md
 ---
 lang: "zh"
-title: "中文文章"
+title: "中文项目"
 ---
 ```
 
 ```md
 ---
 lang: "en"
-title: "English Post"
+title: "English Project"
 ---
 ```
 
@@ -148,7 +148,6 @@ Example blog post:
 
 ```md
 ---
-lang: "en"
 title: "My First Note"
 description: "A short description for the note."
 pubDate: 2026-05-20

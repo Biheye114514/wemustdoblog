@@ -4,7 +4,7 @@ import MarkdownLayout from '../../../layouts/MarkdownLayout.astro';
 import { cleanContentSlug } from '../../../config/i18n';
 
 export async function getStaticPaths() {
-	const posts = (await getCollection('blog')).filter((post) => !post.data.draft && post.data.lang === 'en');
+	const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
 	return posts.map((post) => ({
 		params: { slug: cleanContentSlug(post.id) },
 		props: { post },

@@ -17,13 +17,13 @@ export type Locale = keyof typeof locales;
 
 const shared = {
 	name: 'Atlas',
-	email: 'hello@example.com',
+	email: 'luckykevvv@gmail.com',
 	avatar: '/avatar.png',
-	visitorCount: '02468',
+	visitorCount: '0001',
 	socials: [
-		{ label: 'GitHub', href: 'https://github.com/yourname', icon: '书' },
-		{ label: 'B站', href: 'https://space.bilibili.com' },
-		{ label: 'Folo', href: 'https://folo.is' },
+		{ label: 'GitHub', href: 'https://github.com/luckykevvv', icon: 'GH' },
+		{ label: 'B站', href: 'https://space.bilibili.com/285705387', icon: 'B' },
+		{ label: 'Folo', href: 'https://folo.is', icon: 'F' },
 	],
 };
 

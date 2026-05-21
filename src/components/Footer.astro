@@ -12,7 +12,10 @@ const siteConfig = getSiteConfig(getLocaleFromUrl(Astro.url));
 		</div>
 		<div class="flex flex-wrap gap-3">
 			{siteConfig.socials.map((item) => (
-				<a href={item.href} class="text-sm text-zinc-400 transition hover:text-white" target="_blank">
+				<a href={item.href} class="inline-flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white" target="_blank">
+					<span class="grid h-6 w-6 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-[10px] font-semibold text-zinc-300">
+						{item.icon}
+					</span>
 					{item.label}
 				</a>
 			))}

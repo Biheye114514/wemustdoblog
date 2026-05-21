@@ -14,7 +14,7 @@ const projects = (await getCollection('projects'))
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const featuredProjects = projects.filter((project) => project.data.featured).slice(0, 3);
 const posts = (await getCollection('blog'))
-	.filter((post) => !post.data.draft && post.data.lang === locale)
+	.filter((post) => !post.data.draft)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
 

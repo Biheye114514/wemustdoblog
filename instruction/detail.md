@@ -34,7 +34,7 @@ src/config/i18n.ts
 src/pages/en/
 ```
 
-英文博客和项目通过 frontmatter 的 `lang: "en"` 过滤显示。
+博客不按语言拆分，中英文页面都会显示同一批 `src/content/blog/` 文章。项目通过 frontmatter 的 `lang: "en"` 或 `lang: "zh"` 过滤显示。
 
 ## 站点配置
 
@@ -62,10 +62,10 @@ src/config/site.ts
 name: 'Atlas',
 title: '学生 / 设计工程学习者',
 description: '一个黑色系 Astro 个人网站模板。',
-email: 'hello@example.com',
+email: 'luckykevvv@gmail.com',
 location: 'Campus / Online',
 avatar: '/avatar.png',
-visitorCount: '02468',
+visitorCount: '0001',
 ```
 
 ## 导航
@@ -92,7 +92,7 @@ nav: [
 
 ```ts
 socials: [
-  { label: 'GitHub', href: 'https://github.com/yourname' },
+  { label: 'GitHub', href: 'https://github.com/yourname', icon: 'GH' },
 ]
 ```
 
@@ -100,6 +100,7 @@ socials: [
 | --- | --- | --- |
 | `label` | `string` | 平台名称 |
 | `href` | `string` | 外部链接 |
+| `icon` | `string` | 社交按钮左侧的小字符图标 |
 
 社交链接会显示在 Footer、联系区块和联系页面。
 
@@ -361,7 +362,6 @@ src/content/blog/
 
 ```md
 ---
-lang: "zh"
 title: "我的第一篇笔记"
 description: "这是一段笔记摘要。"
 pubDate: 2026-05-20
@@ -375,7 +375,6 @@ draft: false
 
 | 字段 | 类型 | 必填 | 作用 |
 | --- | --- | --- | --- |
-| `lang` | `'zh' \| 'en'` | 否 | 内容语言，默认 `zh` |
 | `title` | `string` | 是 | 文章标题 |
 | `description` | `string` | 是 | 文章摘要 |
 | `pubDate` | `date` | 是 | 发布日期，用于排序 |

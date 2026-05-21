@@ -8,7 +8,7 @@ import { getLocaleFromUrl, getSiteConfig } from '../../config/site';
 const locale = getLocaleFromUrl(Astro.url);
 const siteConfig = getSiteConfig(locale);
 const posts = (await getCollection('blog'))
-	.filter((post) => !post.data.draft && post.data.lang === locale)
+	.filter((post) => !post.data.draft)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const page = siteConfig.pages.blog;

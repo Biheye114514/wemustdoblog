@@ -103,19 +103,19 @@ src/config/site.ts
 
 其中 `zh` 是中文配置，`en` 是英文配置。Header 会自动显示语言切换按钮。
 
-博客和项目内容通过 frontmatter 的 `lang` 字段区分：
+博客默认只有一份内容，中英文页面都会显示同一批文章。项目可以通过 frontmatter 的 `lang` 字段区分中英文版本：
 
 ```md
 ---
 lang: "zh"
-title: "中文文章"
+title: "中文项目"
 ---
 ```
 
 ```md
 ---
 lang: "en"
-title: "English Post"
+title: "English Project"
 ---
 ```
 
@@ -149,7 +149,6 @@ src/content/projects/
 
 ```md
 ---
-lang: "zh"
 title: "我的第一篇笔记"
 description: "这是一段笔记摘要。"
 pubDate: 2026-05-20
