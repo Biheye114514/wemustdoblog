@@ -11,16 +11,26 @@ const { today } = Astro.props;
 const { dateLocale, greetings, timeZone } = today;
 ---
 
-<script define:vars={{ dateLocale, greetings, timeZone }}>
-	const greeting = document.querySelector('[data-time-greeting]');
-	if (greeting) {
-		const hour = new Date().getHours();
-		const index = hour < 5 ? 0 : hour < 8 ? 1 : hour < 11 ? 2 : hour < 13 ? 3 : hour < 18 ? 4 : 5;
-		greeting.textContent = greetings[index] ?? greetings.at(-1) ?? greeting.textContent;
-	}
+<script define:vars={{ dateLocale, greetings, timeZone }} data-astro-rerun>
+	const homeEnhancementsState = window as Window & {
+		homeEnhancementsInterval?: number;
+		homeEnhancementsEventsReady?: boolean;
+	};
 
-	const time = document.querySelector('[data-melbourne-time]');
-	if (time) {
+	const cleanupHomeEnhancements = () => {
+		if (homeEnhancementsState.homeEnhancementsInterval) {
+			window.clearInterval(homeEnhancementsState.homeEnhancementsInterval);
+			delete homeEnhancementsState.homeEnhancementsInterval;
+		}
+	};
+
+	const mountHomeEnhancements = () => {
+		const greeting = document.querySelector('[data-time-greeting]');
+		const time = document.querySelector('[data-melbourne-time]');
+
+		cleanupHomeEnhancements();
+		if (!greeting && !time) return;
+
 		const formatter = new Intl.DateTimeFormat(dateLocale, {
 			timeZone,
 			year: 'numeric',
@@ -31,10 +41,40 @@ const { dateLocale, greetings, timeZone } = today;
 			second: '2-digit',
 			hour12: false,
 		});
+
+		const hourFormatter = new Intl.DateTimeFormat('en-AU', {
+			timeZone,
+			hour: 'numeric',
+			hour12: false,
+		});
+
+		const updateGreeting = () => {
+			if (!greeting) return;
+
+			const hour = Number(hourFormatter.format(new Date()));
+			const index = hour < 5 ? 0 : hour < 8 ? 1 : hour < 11 ? 2 : hour < 13 ? 3 : hour < 18 ? 4 : 5;
+			greeting.textContent = greetings[index] ?? greetings.at(-1) ?? greeting.textContent;
+		};
+
 		const updateTime = () => {
+			if (!time) return;
 			time.textContent = formatter.format(new Date());
 		};
+
+		updateGreeting();
 		updateTime();
-		window.setInterval(updateTime, 1000);
+
+		homeEnhancementsState.homeEnhancementsInterval = window.setInterval(() => {
+			updateGreeting();
+			updateTime();
+		}, 1000);
+	};
+
+	mountHomeEnhancements();
+
+	if (!homeEnhancementsState.homeEnhancementsEventsReady) {
+		homeEnhancementsState.homeEnhancementsEventsReady = true;
+		document.addEventListener('astro:page-load', mountHomeEnhancements);
+		document.addEventListener('astro:before-swap', cleanupHomeEnhancements);
 	}
 </script>
