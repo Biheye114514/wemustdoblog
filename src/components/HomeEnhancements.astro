@@ -12,10 +12,7 @@ const { dateLocale, greetings, timeZone } = today;
 ---
 
 <script define:vars={{ dateLocale, greetings, timeZone }} data-astro-rerun>
-	const homeEnhancementsState = window as Window & {
-		homeEnhancementsInterval?: number;
-		homeEnhancementsEventsReady?: boolean;
-	};
+	const homeEnhancementsState = window;
 
 	const cleanupHomeEnhancements = () => {
 		if (homeEnhancementsState.homeEnhancementsInterval) {
