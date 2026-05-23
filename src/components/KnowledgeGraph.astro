@@ -53,7 +53,15 @@ const graphId = `knowledge-graph-${Math.random().toString(36).slice(2)}`;
 <script type="application/json" id={`${graphId}-data`} set:html={JSON.stringify(graph)} />
 
 <script>
+	function cleanupKnowledgeGraph(root) {
+		const frameId = Number(root.dataset.animationFrameId ?? 0);
+		if (frameId) cancelAnimationFrame(frameId);
+		delete root.dataset.animationFrameId;
+		delete root.dataset.knowledgeGraphMounted;
+	}
+
 	function mountKnowledgeGraph(root) {
+		cleanupKnowledgeGraph(root);
 		const dataScript = document.getElementById(`${root.id}-data`);
 		if (!dataScript?.textContent) return;
 
@@ -90,6 +98,7 @@ const graphId = `knowledge-graph-${Math.random().toString(36).slice(2)}`;
 		});
 
 		root.innerHTML = '';
+		root.dataset.knowledgeGraphMounted = 'true';
 		const svg = document.createElementNS(svgNS, 'svg');
 		svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 		svg.setAttribute('class', 'h-full w-full');
@@ -208,5 +217,21 @@ const graphId = `knowledge-graph-${Math.random().toString(36).slice(2)}`;
 		root.dataset.animationFrameId = String(frameId);
 	}
 
-	document.querySelectorAll('[data-knowledge-graph]').forEach(mountKnowledgeGraph);
+	function mountKnowledgeGraphs() {
+		document.querySelectorAll('[data-knowledge-graph]').forEach((root) => {
+			requestAnimationFrame(() => mountKnowledgeGraph(root));
+		});
+	}
+
+	function cleanupKnowledgeGraphs() {
+		document.querySelectorAll('[data-knowledge-graph]').forEach(cleanupKnowledgeGraph);
+	}
+
+	mountKnowledgeGraphs();
+
+	if (!window.knowledgeGraphEventsReady) {
+		window.knowledgeGraphEventsReady = 'true';
+		document.addEventListener('astro:page-load', mountKnowledgeGraphs);
+		document.addEventListener('astro:before-swap', cleanupKnowledgeGraphs);
+	}
 </script>

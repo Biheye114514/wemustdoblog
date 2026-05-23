@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
 import { getLocaleFromUrl, getSiteConfig, locales, localizePath } from '../config/site';
 import '../styles/global.css';
 
@@ -40,10 +41,11 @@ const backgroundOverlayStyle = `background: ${background.overlay}`;
 		<meta property="og:type" content="website" />
 		<link rel="alternate" hreflang="zh-CN" href={localizePath('zh', currentPath)} />
 		<link rel="alternate" hreflang="en" href={localizePath('en', currentPath)} />
+		<ClientRouter />
 		<title>{pageTitle}</title>
 	</head>
 	<body class="min-h-screen bg-black text-white antialiased">
-		<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+		<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden" transition:persist="site-background">
 			<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style={backgroundImageStyle}></div>
 			<div class="absolute inset-0" style={backgroundOverlayStyle}></div>
 			{rain.enabled && (
@@ -62,7 +64,7 @@ const backgroundOverlayStyle = `background: ${background.overlay}`;
 			)}
 		</div>
 		<Header />
-		<main class="relative z-10">
+		<main class="relative z-10" transition:name="page-content" transition:animate="slide">
 			<slot />
 		</main>
 		<div class="relative z-10">
@@ -75,7 +77,8 @@ const backgroundOverlayStyle = `background: ${background.overlay}`;
 	const canvas = document.querySelector<HTMLCanvasElement>('[data-rain-canvas]');
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-	if (canvas && !reduceMotion.matches) {
+	if (canvas && !reduceMotion.matches && !canvas.dataset.rainReady) {
+		canvas.dataset.rainReady = 'true';
 		const context = canvas.getContext('2d');
 		if (!context) throw new Error('Rain canvas context is unavailable.');
 

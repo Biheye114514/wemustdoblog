@@ -23,3 +23,17 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local personal content and overrides
+src/config/site.local.ts
+src/config/site.personal.ts
+src/content/Resume.pdf
+src/content/blog/2086/
+src/content/blog/3152/
+src/content/private/
+src/content/**/*.pdf
+public/Resume.pdf
+public/bg.jpg
+public/anon.jpg
+public/private/
+public/local/

@@ -18,8 +18,10 @@ const { post } = Astro.props;
 const allPosts = await getCollection('blog');
 const backlinks = getBacklinks(post.id, allPosts);
 const { Content } = await render(post);
+const cleanSlug = cleanContentSlug(post.id);
+const heroTransitionName = `blog-title-${cleanSlug.replace(/[^a-zA-Z0-9_-]/g, '-')}`;
 ---
 
-<MarkdownLayout title={getEntryTitle(post)} description={getEntryDescription(post)} date={post.data.pubDate} tags={post.data.tags} backlinks={backlinks}>
+<MarkdownLayout title={getEntryTitle(post)} description={getEntryDescription(post)} date={post.data.pubDate} tags={post.data.tags} backlinks={backlinks} heroTransitionName={heroTransitionName}>
 	<Content />
 </MarkdownLayout>

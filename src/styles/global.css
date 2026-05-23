@@ -11,11 +11,31 @@
 
 html {
 	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
 	background: #000;
 }
 
 body {
 	margin: 0;
+}
+
+::view-transition-old(page-content),
+::view-transition-new(page-content) {
+	animation-duration: 420ms;
+	animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 300ms;
+	animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation-duration: 1ms;
+	}
 }
 
 ::selection {
