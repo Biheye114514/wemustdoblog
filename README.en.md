@@ -6,6 +6,19 @@ Atlas is a dark Astro personal website template for students, makers, and design
 
 The template uses Astro Content Collections for blog posts and projects, so most content is typed, file-based, and easy to replace.
 
+## ✨ Demo
+
+[![Astro 6](https://img.shields.io/badge/Astro-6-ff5d01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+![Node.js >= 22.12](https://img.shields.io/badge/Node.js-%3E%3D22.12-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Static Output](https://img.shields.io/badge/Output-Static-111827?style=for-the-badge)
+
+🌐 Live preview: [https://blog.chihaya-anon.uk/](https://blog.chihaya-anon.uk/)
+
+🌧️ Configurable background, rain animation, bilingual navigation, status card, and personal quick links all come together in this demo.
+
+![Atlas demo screenshot](./public/demo.png)
+
 ## Features
 
 - Dark visual style with a student-friendly personal homepage

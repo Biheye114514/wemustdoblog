@@ -6,6 +6,19 @@ Atlas 是一个黑色系 [Astro](https://astro.build) 个人网站模板
 
 模板使用 Astro Content Collections 管理博客和项目数据，内容以 Markdown 维护，适合长期更新和二次修改。
 
+## ✨ Demo
+
+[![Astro 6](https://img.shields.io/badge/Astro-6-ff5d01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
+[![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+![Node.js >= 22.12](https://img.shields.io/badge/Node.js-%3E%3D22.12-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Static Output](https://img.shields.io/badge/Output-Static-111827?style=for-the-badge)
+
+🌐 在线预览：[https://blog.chihaya-anon.uk/](https://blog.chihaya-anon.uk/)
+
+🌧️ 可配置背景、雨滴动画、双语导航、状态卡片和个人入口都在这个 Demo 里。
+
+![Atlas demo screenshot](./public/demo.png)
+
 ## ✨特性
 
 - [x] 黑色系视觉风格，适合学生个人主页和作品集
