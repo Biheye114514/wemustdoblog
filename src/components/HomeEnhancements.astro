@@ -21,15 +21,22 @@ const { dateLocale, greetings, timeZone } = today;
 		}
 	};
 
+	homeEnhancementsState.homeEnhancementsConfig = {
+		dateLocale,
+		greetings,
+		timeZone,
+	};
+
 	const mountHomeEnhancements = () => {
+		const config = homeEnhancementsState.homeEnhancementsConfig;
 		const greeting = document.querySelector('[data-time-greeting]');
 		const time = document.querySelector('[data-melbourne-time]');
 
 		cleanupHomeEnhancements();
 		if (!greeting && !time) return;
 
-		const formatter = new Intl.DateTimeFormat(dateLocale, {
-			timeZone,
+		const formatter = new Intl.DateTimeFormat(config.dateLocale, {
+			timeZone: config.timeZone,
 			year: 'numeric',
 			month: '2-digit',
 			day: '2-digit',
@@ -40,7 +47,7 @@ const { dateLocale, greetings, timeZone } = today;
 		});
 
 		const hourFormatter = new Intl.DateTimeFormat('en-AU', {
-			timeZone,
+			timeZone: config.timeZone,
 			hour: 'numeric',
 			hour12: false,
 		});
@@ -50,7 +57,7 @@ const { dateLocale, greetings, timeZone } = today;
 
 			const hour = Number(hourFormatter.format(new Date()));
 			const index = hour < 5 ? 0 : hour < 8 ? 1 : hour < 11 ? 2 : hour < 13 ? 3 : hour < 18 ? 4 : 5;
-			greeting.textContent = greetings[index] ?? greetings.at(-1) ?? greeting.textContent;
+			greeting.textContent = config.greetings[index] ?? config.greetings.at(-1) ?? greeting.textContent;
 		};
 
 		const updateTime = () => {
