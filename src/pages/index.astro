@@ -45,7 +45,22 @@ const services = home.services.map((service) => (typeof service === 'string' ? {
 						{siteConfig.today.timeLabel}：<span data-melbourne-time>--:--</span>
 					</p>
 					<p class="text-sm text-zinc-500">
-						<a data-steam-status href="#" class="transition hover:text-white">Steam：加载中...</a>
+						<a
+							data-steam-status
+							href="#"
+							class="inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3 py-1.5 text-xs font-medium text-zinc-300 transition hover:border-white/25 hover:bg-white/10 hover:text-white"
+						>
+							<span data-steam-status-dot class="h-2 w-2 shrink-0 rounded-full bg-zinc-600"></span>
+							<img
+								data-steam-game-logo
+								hidden
+								class="h-5 w-5 shrink-0 rounded bg-zinc-900 object-cover"
+								alt=""
+								loading="lazy"
+								onerror="this.hidden = true;"
+							/>
+							<span data-steam-status-text class="min-w-0 truncate">Steam：加载中...</span>
+						</a>
 					</p>
 				</div>
 			</div>

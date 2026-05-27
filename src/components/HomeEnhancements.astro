@@ -74,6 +74,9 @@ const { dateLocale, greetings, timeZone } = today;
 		const greeting = document.querySelector('[data-time-greeting]');
 		const time = document.querySelector('[data-melbourne-time]');
 		const steamStatus = document.querySelector('[data-steam-status]');
+		const steamStatusText = document.querySelector('[data-steam-status-text]');
+		const steamStatusDot = document.querySelector('[data-steam-status-dot]');
+		const steamGameLogo = document.querySelector('[data-steam-game-logo]');
 		const visitorCount = document.querySelector('[data-visitor-count]');
 
 		cleanupHomeEnhancements();
@@ -109,15 +112,33 @@ const { dateLocale, greetings, timeZone } = today;
 			time.textContent = formatter.format(new Date());
 		};
 
-		const setSteamStatus = ({ text, href }) => {
+		const setSteamStatus = ({ text, href, logoUrl, logoAlt, active }) => {
 			if (!steamStatus) return;
-			steamStatus.textContent = text;
+			if (steamStatusText) steamStatusText.textContent = text;
+			else steamStatus.textContent = text;
 			if (href) {
 				steamStatus.href = href;
 				steamStatus.removeAttribute('aria-disabled');
 			} else {
 				steamStatus.removeAttribute('href');
 				steamStatus.setAttribute('aria-disabled', 'true');
+			}
+
+			if (steamStatusDot) {
+				steamStatusDot.classList.toggle('bg-emerald-400', Boolean(active));
+				steamStatusDot.classList.toggle('shadow-[0_0_10px_rgba(52,211,153,0.75)]', Boolean(active));
+				steamStatusDot.classList.toggle('bg-zinc-600', !active);
+			}
+
+			if (!steamGameLogo) return;
+			if (logoUrl) {
+				steamGameLogo.src = logoUrl;
+				steamGameLogo.alt = logoAlt ?? '';
+				steamGameLogo.hidden = false;
+			} else {
+				steamGameLogo.hidden = true;
+				steamGameLogo.removeAttribute('src');
+				steamGameLogo.alt = '';
 			}
 		};
 
@@ -133,6 +154,9 @@ const { dateLocale, greetings, timeZone } = today;
 					setSteamStatus({
 						text: config.steam.playing.replace('{game}', status.gameName),
 						href: status.gameId ? `https://store.steampowered.com/app/${status.gameId}` : status.profileUrl,
+						logoUrl: status.gameIconUrl ?? status.gameLogoUrl,
+						logoAlt: status.gameName,
+						active: true,
 					});
 					return;
 				}
@@ -141,11 +165,15 @@ const { dateLocale, greetings, timeZone } = today;
 				setSteamStatus({
 					text: config.steam.status.replace('{status}', state),
 					href: status.profileUrl,
+					logoUrl: undefined,
+					active: status.personaStateLabel && status.personaStateLabel !== 'Offline',
 				});
 			} catch {
 				setSteamStatus({
 					text: config.steam.unavailable,
 					href: undefined,
+					logoUrl: undefined,
+					active: false,
 				});
 			}
 		};
