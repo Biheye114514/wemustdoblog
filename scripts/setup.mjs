@@ -79,7 +79,7 @@ async function setupDynamic() {
 	await run('npm', ['install']);
 
 	console.log('\nDynamic setup complete.');
-	console.log('Configure these environment variables on your server:');
+	console.log('Configure these values in .env on your server:');
 	console.log('  STEAM_API_KEY=your_steam_web_api_key');
 	console.log('  STEAM_ID_64=your_64_bit_steam_id');
 	console.log('  HOST=0.0.0.0');
@@ -109,9 +109,10 @@ async function setupDynamic() {
 
 	await run('npm', ['run', 'pm2:start']);
 	console.log('\nPM2 started. Useful commands:');
-	console.log('  pm2 logs atlas-dynamic');
+	console.log('  npm run pm2:logs');
 	console.log('  npm run pm2:restart');
 	console.log('  npm run pm2:stop');
+	console.log('  npm run pm2:delete');
 }
 
 try {

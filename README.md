@@ -398,7 +398,7 @@ npm run start
 http://服务器IP:4321
 ```
 
-Steam 状态需要在服务器环境变量中配置：
+Steam 状态和服务器监听配置统一写入 `.env`：
 
 ```sh
 STEAM_API_KEY=你的 Steam Web API Key
@@ -408,7 +408,7 @@ PORT=4321
 ATLAS_DATA_DIR=.atlas-data
 ```
 
-Steam 个人资料和游戏状态需要允许公开，否则只能显示离线或不可用状态。动态访客计数会写入 `ATLAS_DATA_DIR` 下的本地 JSON 文件。不要提交真实 `.env`，仓库只提供 `.env.example` 模板。
+Steam 个人资料和游戏状态需要允许公开，否则只能显示离线或不可用状态。动态访客计数会写入 `ATLAS_DATA_DIR` 下的本地 JSON 文件。不要提交真实 `.env`，仓库只提供 `.env.example` 模板；如果 `.env` 与系统环境变量同名，项目以 `.env` 为准。
 
 更适合长期运行的方式是 PM2，`pm2:start` 会先构建动态版本再启动生产服务器：
 
@@ -424,7 +424,8 @@ pm2 save
 ```sh
 npm run pm2:restart
 npm run pm2:stop
-pm2 logs atlas-dynamic
+npm run pm2:logs
+npm run pm2:delete
 ```
 
 动态模式会生成 Node SSR 服务器，而不是只生成可直接托管的静态文件。适合个人站、内网预览或你自己维护的 VPS；如果公开访问，建议前面加 Nginx / Caddy 反向代理和 HTTPS。

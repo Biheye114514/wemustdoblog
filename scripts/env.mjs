@@ -17,10 +17,16 @@ export function readEnvFile(path = '.env') {
 	);
 }
 
-export function dynamicEnv() {
+export function projectEnv(defaults = {}) {
+	const envFilePath = process.env.ATLAS_ENV_FILE || '.env';
+
 	return {
+		...defaults,
 		...process.env,
-		...readEnvFile(),
-		ATLAS_DYNAMIC: 'true',
+		...readEnvFile(envFilePath),
 	};
+}
+
+export function dynamicEnv() {
+	return projectEnv({ ATLAS_DYNAMIC: 'true' });
 }

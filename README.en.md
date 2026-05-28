@@ -397,7 +397,7 @@ Default URL:
 http://SERVER_IP:4321
 ```
 
-Steam status requires these server environment variables:
+Write Steam status and server binding configuration in `.env`:
 
 ```sh
 STEAM_API_KEY=your Steam Web API key
@@ -407,7 +407,7 @@ PORT=4321
 ATLAS_DATA_DIR=.atlas-data
 ```
 
-Your Steam profile and game details must be public. Otherwise the site can only show offline or unavailable status. Dynamic visitor counts are stored in a local JSON file under `ATLAS_DATA_DIR`. Do not commit a real `.env`; this repo only includes `.env.example`.
+Your Steam profile and game details must be public. Otherwise the site can only show offline or unavailable status. Dynamic visitor counts are stored in a local JSON file under `ATLAS_DATA_DIR`. Do not commit a real `.env`; this repo only includes `.env.example`. If `.env` and system environment variables define the same key, this project uses the `.env` value.
 
 For long-running use, run it with PM2. `pm2:start` builds the dynamic server first, then starts the production server:
 
@@ -423,7 +423,8 @@ Useful commands:
 ```sh
 npm run pm2:restart
 npm run pm2:stop
-pm2 logs atlas-dynamic
+npm run pm2:logs
+npm run pm2:delete
 ```
 
 Dynamic mode generates a Node SSR server instead of static-only files. It is useful for personal sites, private previews, or a VPS you control. For public access, put Nginx or Caddy with HTTPS in front of it.
