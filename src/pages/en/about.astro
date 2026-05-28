@@ -1,9 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import SteamProfileCard from '../../components/SteamProfileCard.astro';
-import AboutGameList from '../../components/AboutGameList.astro';
+import PageRenderer from '../../components/PageRenderer.astro';
 import { getLocaleFromUrl, getSiteConfig } from '../../config/site';
 
 const locale = getLocaleFromUrl(Astro.url);
@@ -12,34 +9,5 @@ const page = siteConfig.pages.about;
 ---
 
 <Layout title={page.title} description={page.description}>
-	<section class="mx-auto max-w-6xl px-5 py-20 md:py-28">
-		<SectionHeading kicker={page.kicker} title={page.heading} description={page.intro} />
-		<div class="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
-			<div class="rounded-lg border border-white/10 bg-white/[0.03] p-6">
-				<p class="text-sm uppercase tracking-[0.24em] text-zinc-500">{page.profileLabel}</p>
-				<p class="mt-4 text-2xl font-semibold leading-snug text-white">{page.profile}</p>
-			</div>
-			<div class="space-y-5 text-base leading-8 text-zinc-400">
-				{page.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-			</div>
-		</div>
-	</section>
-
-	<SteamProfileCard locale={locale} />
-
-	<AboutGameList
-		title={page.servicesTitle}
-		description={page.servicesDescription}
-		fallbackDescription={page.serviceDescription}
-		items={page.services}
-	/>
-
-	<section class="mx-auto max-w-6xl px-5 py-16">
-		<SectionHeading title={page.skillsTitle} />
-		<div class="flex flex-wrap gap-3">
-			{siteConfig.skills.map((skill) => <span class="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-zinc-200">{skill}</span>)}
-		</div>
-	</section>
-
-	<ContactPanel />
+	<PageRenderer locale={locale} modules={page.modules} />
 </Layout>

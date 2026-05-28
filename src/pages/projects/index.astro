@@ -1,28 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
-import { getCollection } from 'astro:content';
+import PageRenderer from '../../components/PageRenderer.astro';
 import { getLocaleFromUrl, getSiteConfig } from '../../config/site';
 
 const locale = getLocaleFromUrl(Astro.url);
 const siteConfig = getSiteConfig(locale);
-const projects = (await getCollection('projects'))
-	.filter((project) => project.data.lang === locale)
-	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
 const page = siteConfig.pages.projects;
 ---
 
 <Layout title={page.title} description={page.description}>
-	<section class="mx-auto max-w-6xl px-5 py-20 md:py-28">
-		<SectionHeading
-			kicker={page.kicker}
-			title={page.heading}
-			description={page.intro}
-		/>
-		<div class="grid gap-4 md:grid-cols-2">
-			{projects.map((project) => <ProjectCard project={project} />)}
-		</div>
-	</section>
+	<PageRenderer locale={locale} modules={page.modules} />
 </Layout>

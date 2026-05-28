@@ -12,11 +12,10 @@ type GameItem = {
 interface Props {
 	title: string;
 	description?: string;
-	fallbackDescription?: string;
 	items: Array<string | GameItem>;
 }
 
-const { description, fallbackDescription, items, title } = Astro.props;
+const { description, items, title } = Astro.props;
 const games = items.map((item) => (typeof item === 'string' ? { label: item } : item));
 ---
 
@@ -43,9 +42,7 @@ const games = items.map((item) => (typeof item === 'string' ? { label: item } : 
 								</span>
 							)}
 						</div>
-						<p class="mt-2 text-sm leading-6 text-zinc-400">
-							{game.description ?? fallbackDescription}
-						</p>
+						{game.description && <p class="mt-2 text-sm leading-6 text-zinc-400">{game.description}</p>}
 					</div>
 				</>
 			);

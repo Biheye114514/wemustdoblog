@@ -117,6 +117,94 @@ src/config/site.ts
 - 技能和经历
 - 通用按钮文案
 
+### 页面模块
+
+固定页面现在也从 `src/config/site.ts` 的 `pages` 配置生成。每个页面包含 `title`、`description` 和 `modules`，页面顺序就是 `modules` 数组顺序：
+
+```ts
+pages: {
+  about: {
+    title: '关于我',
+    description: '关于我的个人介绍',
+    modules: [
+      {
+        type: 'aboutIntro',
+        props: {
+          kicker: 'About',
+          heading: '关于我',
+          profileLabel: 'Profile',
+          profile: '学生 / 开发者',
+          paragraphs: ['这里写介绍。'],
+        },
+      },
+      { type: 'steamProfile' },
+      {
+        type: 'gameList',
+        props: {
+          title: '最近在玩',
+          description: '欢迎来找我玩',
+          items: [
+            { label: 'Game Name', gameId: 123, icon: '/game/icon.png', href: 'https://example.com' },
+          ],
+        },
+      },
+      { type: 'contactPanel' },
+    ],
+  },
+}
+```
+
+可用模块类型在 `src/modules/types.ts` 里维护。目前内置模块包括：
+
+- `homeHero`：首页首屏、状态卡和 Steam 小徽章
+- `linkGrid`：首页快捷入口
+- `projectGrid` / `projectList`：项目列表
+- `blogPreview` / `blogIndex`：博客预览和博客索引
+- `aboutIntro`：关于页介绍
+- `steamProfile`：Steam 资料卡
+- `gameList`：自定义游戏/条目列表，支持 `icon`、`href`、`gameId`
+- `skillCloud`：技能标签云
+- `knowledgeGraph`：知识图谱
+- `resume`：简历页主体
+- `contactCards`：联系方式卡片
+- `contactPanel`：底部联系区块
+- `pageHeader`：通用页面标题
+- `richText`：简单文本段落
+
+博客详情页和项目详情页仍然来自 `src/content/` 的 Markdown；模块系统负责列表页、固定页面和自定义页面。
+
+### 自定义页面
+
+你可以在对应语言配置里添加 `customPages`，不用新增 Astro 页面文件：
+
+```ts
+customPages: [
+  {
+    path: '/uses',
+    title: '我的工具',
+    description: '常用设备和软件',
+    modules: [
+      {
+        type: 'pageHeader',
+        props: {
+          kicker: 'Uses',
+          heading: '我的工具',
+          intro: '这里记录我常用的工具。',
+        },
+      },
+      {
+        type: 'richText',
+        props: {
+          body: ['第一段内容。', '第二段内容。'],
+        },
+      },
+    ],
+  },
+]
+```
+
+中文配置里的自定义页面会生成 `/uses/`，英文配置里的自定义页面会生成 `/en/uses/`。`about`、`blog`、`contact`、`graph`、`projects`、`resume` 是固定页面根路径，不能被 `customPages` 覆盖。
+
 ## 多语言
 
 Atlas 默认使用中文页面，英文页面路径为：

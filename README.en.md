@@ -100,6 +100,94 @@ Use this file to update:
 - Skills and experience
 - Shared UI labels
 
+### Page Modules
+
+Built-in pages are now generated from the `pages` config in `src/config/site.ts`. Each page has `title`, `description`, and `modules`; the rendered order follows the `modules` array:
+
+```ts
+pages: {
+  about: {
+    title: 'About',
+    description: 'About this site owner',
+    modules: [
+      {
+        type: 'aboutIntro',
+        props: {
+          kicker: 'About',
+          heading: 'About me',
+          profileLabel: 'Profile',
+          profile: 'Student / developer',
+          paragraphs: ['Write your intro here.'],
+        },
+      },
+      { type: 'steamProfile' },
+      {
+        type: 'gameList',
+        props: {
+          title: 'Recently playing',
+          description: 'Come play with me',
+          items: [
+            { label: 'Game Name', gameId: 123, icon: '/game/icon.png', href: 'https://example.com' },
+          ],
+        },
+      },
+      { type: 'contactPanel' },
+    ],
+  },
+}
+```
+
+Available module schemas live in `src/modules/types.ts`. Built-in module types include:
+
+- `homeHero`: homepage hero, status card, and Steam badge
+- `linkGrid`: homepage quick links
+- `projectGrid` / `projectList`: project lists
+- `blogPreview` / `blogIndex`: blog preview and blog index
+- `aboutIntro`: about page intro
+- `steamProfile`: Steam profile card
+- `gameList`: custom game/item list with optional `icon`, `href`, and `gameId`
+- `skillCloud`: skill tags
+- `knowledgeGraph`: knowledge graph
+- `resume`: resume page body
+- `contactCards`: contact cards
+- `contactPanel`: bottom contact block
+- `pageHeader`: generic page heading
+- `richText`: simple text paragraphs
+
+Blog detail pages and project detail pages still come from Markdown files in `src/content/`; the module system controls list pages, built-in pages, and custom pages.
+
+### Custom Pages
+
+Add `customPages` to the matching language config when you want a new page without creating a new Astro route:
+
+```ts
+customPages: [
+  {
+    path: '/uses',
+    title: 'Uses',
+    description: 'My daily tools and software',
+    modules: [
+      {
+        type: 'pageHeader',
+        props: {
+          kicker: 'Uses',
+          heading: 'My tools',
+          intro: 'A list of tools I use often.',
+        },
+      },
+      {
+        type: 'richText',
+        props: {
+          body: ['First paragraph.', 'Second paragraph.'],
+        },
+      },
+    ],
+  },
+]
+```
+
+Custom pages in the Chinese config are generated at `/uses/`; custom pages in the English config are generated at `/en/uses/`. The fixed page roots `about`, `blog`, `contact`, `graph`, `projects`, and `resume` cannot be overridden by `customPages`.
+
 ## Internationalization
 
 Atlas uses Chinese as the default route and English under:
