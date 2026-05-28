@@ -31,11 +31,40 @@ The template uses Astro Content Collections for blog posts and projects, so most
 - Tailwind CSS v4 through `@tailwindcss/vite`
 - Static output by default, with optional Node SSR mode for live server features
 
+## 2025.05.28 Update
+
+This update is a page modularisation refactor, converting fixed pages from hardcoded components into a configurable module system:
+
+- Page modularisation: all built-in pages now render dynamically through `PageRenderer` using the `pages` config module arrays
+- Added `src/modules/` directory with 14 reusable module components covering homepage, about, projects, blog, graph, resume, and contact pages
+- Module type definitions centralised in `src/modules/types.ts`; adding a new module only requires a component and a type entry
+- Custom page support: define `customPages` in the site config to generate new pages without creating Astro route files
+- Removed redundant config fields: page-level `kicker`/`heading`/`intro` (now maintained in module props), deprecated `home.services`/`home.projects`/`home.notes`, and `downloadResumeLabel`
+- Unified localisation with `localizeModuleLinks` for automatic multi-language link handling in modules, replacing the old page-level `services.map` approach
+- Updated example `site.ts` to show the complete modular configuration
+
+## 2025.05.23 Update
+
+This update focused on feature and structure improvements without changing personal content:
+
+- Added configurable background system: background image, blur, opacity, scale, overlay, and rain animation controls
+- Rain animation supports two modes: `falling` for top-to-bottom rain and `front` for screen-facing rain with ripples
+- Decoupled homepage services and about page services, now using `home.services` and `pages.about.services`
+- Resume page now supports PDF download via `resume.files` with configurable multiple files stored in `public/`
+- Resume project entries now support a `link` field for multiple action buttons with custom labels
+- Resume data restructured into `summary`, `details`, `links`, `highlights`, and `sections`
+- Removed unused legacy fields such as `experience`, `location`, and `locationLabel`
+- Added icon component; social links, quick links, and email icons now support image URLs
+- Added knowledge graph page and wiki link support for blog interlinking
+- Blog dynamic routes now support multi-level paths for organising Markdown by course or topic
+- Added dynamic development entry and PM2 production mode for server-side features
+
 ## Project Structure
 
 ```text
 src/
   components/        Reusable UI components
+  modules/           Reusable page module components
   config/            Site text, nav, social links, resume data
   content/           Blog and project Markdown content
   layouts/           Base layout and Markdown layout

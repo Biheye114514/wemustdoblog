@@ -48,11 +48,24 @@ Atlas 是一个黑色系 [Astro](https://astro.build) 个人网站模板
 - 博客动态路由调整为多级路径，方便按课程或主题组织 Markdown 文件
 - 新增动态开发入口和 PM2 生产运行方式，用于需要服务端能力的部署
 
+## 2025.05.28 更新
+
+本次更新为页面模块化重构，将固定页面从硬编码组件改为可配置的模块系统：
+
+- 页面模块化：所有固定页面改为通过 `PageRenderer` 动态渲染 `pages` 配置中的模块数组
+- 新增 `src/modules/` 目录，包含 14 个可复用模块组件，覆盖首页、关于、项目、博客、图谱、简历、联系等页面
+- 模块类型定义集中在 `src/modules/types.ts`，新增模块只需实现组件并在 `types.ts` 添加类型条目
+- 新增自定义页面支持：通过站点配置中的 `customPages` 即可生成新页面，无需额外创建 Astro 路由文件
+- 清理冗余配置字段：移除页面层级的 `kicker`/`heading`/`intro`（数据已在模块 props 中维护），移除 `home.services`/`home.projects`/`home.notes` 废弃字段，移除 `downloadResumeLabel`
+- 本地化逻辑统一：新增 `localizeModuleLinks` 函数自动处理模块内链接的多语言转换，替代旧的页面级 `services.map` 方案
+- 示例 `site.ts` 同步更新，展示完整的模块化配置示例
+
 ## 📝项目结构
 
 ```text
 src/
   components/        可复用 UI 组件
+  modules/           可复用页面模块组件
   config/            站点文案、导航、社交链接和经历数据
   content/           博客和项目 Markdown 内容
   layouts/           基础布局和 Markdown 布局
