@@ -58,6 +58,12 @@ Atlas 是一个黑色系 [Astro](https://astro.build) 个人网站模板
 - 新增自定义页面支持：通过站点配置中的 `customPages` 即可生成新页面，无需额外创建 Astro 路由文件
 - 清理冗余配置字段：移除页面层级的 `kicker`/`heading`/`intro`（数据已在模块 props 中维护），移除 `home.services`/`home.projects`/`home.notes` 废弃字段，移除 `downloadResumeLabel`
 - 本地化逻辑统一：新增 `localizeModuleLinks` 函数自动处理模块内链接的多语言转换，替代旧的页面级 `services.map` 方案
+- 新增动态服务器模式：通过 `npm run setup` 交互式选择静态或 Node SSR 模式，支持 Steam 实时状态和访客计数等需要服务端的动态功能
+- 新增 Steam 状态 API 和首页 Steam 状态徽章，实时显示在线状态和当前游戏
+- 新增 Steam 资料卡组件，关于页通过 `steamProfile` 模块展示 Steam 个人资料和游戏记录
+- 新增 `gameList` 模块，关于页支持配置自定义条目列表（游戏、兴趣领域等），支持图标和链接
+- 首页问候语和 Steam 状态修复，语言切换后自动刷新
+- 新增 PM2 生产运行支持（`npm run pm2:start`）
 - 示例 `site.ts` 同步更新，展示完整的模块化配置示例
 
 ## 📝项目结构

@@ -41,6 +41,12 @@ This update is a page modularisation refactor, converting fixed pages from hardc
 - Custom page support: define `customPages` in the site config to generate new pages without creating Astro route files
 - Removed redundant config fields: page-level `kicker`/`heading`/`intro` (now maintained in module props), deprecated `home.services`/`home.projects`/`home.notes`, and `downloadResumeLabel`
 - Unified localisation with `localizeModuleLinks` for automatic multi-language link handling in modules, replacing the old page-level `services.map` approach
+- Added dynamic server mode: interactive setup script (`npm run setup`) to choose static or Node SSR mode, enabling live Steam status and visitor count
+- Added Steam status API with homepage badge showing real-time online status and current game
+- Added Steam profile card component, configurable via `steamProfile` module on about page with game records
+- Added `gameList` module for custom item lists on about page (games, focus areas, etc.) with icon and link support
+- Fixed homepage greeting and Steam status refresh after language switches
+- Added PM2 production mode support (`npm run pm2:start`)
 - Updated example `site.ts` to show the complete modular configuration
 
 ## 2025.05.23 Update
