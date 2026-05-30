@@ -2,20 +2,25 @@
 import Layout from './Layout.astro';
 import { getLocaleFromUrl, getSiteConfig, localizePath } from '../config/site';
 import { getBlogImageAssets } from '../utils/blog-assets';
+import type { ReadingStats } from '../utils/reading-stats';
+import { formatReadingStats } from '../utils/reading-stats';
 
 interface Props {
 	title: string;
 	description: string;
 	date?: Date;
 	tags?: string[];
+	cover?: string;
+	readingStats?: ReadingStats;
 	backlinks?: Array<{ id: string; title: string; description: string }>;
 	heroTransitionName?: string;
 }
 
-const { title, description, date, tags = [], backlinks = [], heroTransitionName } = Astro.props;
+const { title, description, date, tags = [], cover, readingStats, backlinks = [], heroTransitionName } = Astro.props;
 const locale = getLocaleFromUrl(Astro.url);
 const siteConfig = getSiteConfig(locale);
 const imageAssets = getBlogImageAssets();
+const formattedStats = readingStats ? formatReadingStats(readingStats, locale) : undefined;
 const formattedDate = date?.toLocaleDateString('zh-CN', {
 	year: 'numeric',
 	month: 'long',
@@ -29,15 +34,28 @@ const formattedDate = date?.toLocaleDateString('zh-CN', {
 			{siteConfig.ui.backToList}
 		</a>
 		<header class="mt-10 border-b border-white/10 pb-10">
-			{formattedDate && <p class="text-sm text-zinc-500">{formattedDate}</p>}
+			<div class="flex flex-wrap gap-3 text-sm text-zinc-500">
+				{formattedDate && <span>{formattedDate}</span>}
+				{formattedStats && <span>{formattedStats.wordCount}</span>}
+				{formattedStats && <span>{formattedStats.readingTime}</span>}
+			</div>
 			<h1 class="mt-4 text-4xl font-semibold tracking-normal text-white md:text-6xl" transition:name={heroTransitionName}>{title}</h1>
 			<p class="mt-5 text-lg leading-8 text-zinc-400">{description}</p>
 			{tags.length > 0 && (
 				<div class="mt-6 flex flex-wrap gap-2">
 					{tags.map((tag) => (
-						<span class="rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-300">{tag}</span>
+						<span class="rounded-full border border-blue-400/25 bg-blue-400/10 px-3 py-1 text-xs font-medium text-blue-200">#{tag}</span>
 					))}
 				</div>
+			)}
+			{cover && (
+				<img
+					src={cover}
+					alt=""
+					class="mt-8 aspect-[16/8] w-full rounded-lg border border-white/10 bg-zinc-900 object-cover"
+					loading="eager"
+					decoding="async"
+				/>
 			)}
 		</header>
 		<div class="prose-content mt-10">

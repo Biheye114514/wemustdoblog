@@ -4,6 +4,7 @@ import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
 import { getBacklinks } from '../../utils/knowledge';
 import { getEntryDescription, getEntryTitle } from '../../utils/content';
 import { cleanContentSlug } from '../../config/i18n';
+import { getReadingStats } from '../../utils/reading-stats';
 
 export const prerender = true;
 
@@ -29,6 +30,8 @@ const heroTransitionName = `blog-title-${cleanSlug.replace(/[^a-zA-Z0-9_-]/g, '-
 	description={getEntryDescription(post)}
 	date={post.data.pubDate}
 	tags={post.data.tags}
+	cover={post.data.cover}
+	readingStats={getReadingStats(post.body)}
 	backlinks={backlinks}
 	heroTransitionName={heroTransitionName}
 >

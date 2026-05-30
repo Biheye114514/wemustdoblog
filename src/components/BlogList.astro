@@ -4,11 +4,13 @@ import { getEntryDescription, getEntryTitle } from '../utils/content';
 
 interface Post {
 	id: string;
+	body?: string;
 	data: {
 		title: string;
 		description: string;
 		pubDate: Date;
 		tags: string[];
+		cover?: string;
 	};
 }
 
