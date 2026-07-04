@@ -604,7 +604,7 @@ function localizeSiteLinks<T extends typeof siteConfigs[Locale]>(config: T, loca
 				Object.entries(config.pages).map(([key, page]) => [
 					key,
 					"modules" in page
-						? { ...page, modules: page.modules.map((module) => localizeModuleLinks(module, locale)) }
+						? { ...page, modules: page.modules.map((module: { type: string; props?: Record<string, unknown> }) => localizeModuleLinks(module, locale)) }
 						: page,
 				]),
 			),
