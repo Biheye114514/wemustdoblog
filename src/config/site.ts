@@ -16,8 +16,8 @@ export const locales = {
 export type Locale = keyof typeof locales;
 
 const shared = {
-	name: "Atlas",
-	email: "luckykevvv@gmail.com",
+	name: "Biheye",
+	email: "2609260660@qq.com",
 	emailIcon: "@",
 	avatar: "/avatar.png",
 	visitorCount: "0001",
@@ -39,8 +39,8 @@ const shared = {
 		},
 	},
 	socials: [
-		{ label: "GitHub", href: "https://github.com/luckykevvv", icon: "GH" },
-		{ label: "B站", href: "https://space.bilibili.com/285705387", icon: "B" },
+		{ label: "GitHub", href: "https://github.com/Biheye114514", icon: "GH" },
+		{ label: "B站", href: "https://space.bilibili.com/94217775?spm_id_from=333.1007.0.0", icon: "B" },
 		{ label: "Folo", href: "https://folo.is", icon: "F" },
 	],
 };
@@ -48,8 +48,8 @@ const shared = {
 const siteConfigs = {
 	zh: {
 		...shared,
-		title: "学生 / 设计工程学习者",
-		description: "一个黑色系 Astro 个人网站模板，用来放课程记录、小项目、博客笔记、简历经历和个人链接。",
+		title: "一个水货的个人博客",
+		description: "记录日常学习、番剧感想、技术交流和一些慢慢折腾出来的小东西。",
 		nav: [
 			{ label: "首页", href: "/" },
 			{ label: "关于我", href: "/about" },
@@ -68,9 +68,9 @@ const siteConfigs = {
 		],
 		today: {
 			title: "今日小状态",
-			current: "正在：整理课程笔记",
-			next: "稍后：改一个小项目",
-			note: "今日目标：把 README 写明白",
+			current: "正在：学习一点新东西",
+			next: "稍后：补一篇番剧感想",
+			note: "今日目标：把想法好好留下来",
 			timeLabel: "我的当前时间",
 			timeZone: "Asia/Shanghai",
 			dateLocale: "zh-CN",
@@ -85,31 +85,35 @@ const siteConfigs = {
 			socialCardCta: "查看主页",
 		},
 		home: {
-			eyebrowNote: "一个学生的主页入口，放作品、笔记和正在折腾的东西。",
+			eyebrowNote: "一个水货的主页入口，放学习记录、番剧感想和技术折腾。",
 			visitorText: "访客编号 #{count}，欢迎翻翻这个小角落",
-			headline: "把上课、折腾和突然冒出的想法都放在这里。",
-			intro: "这是一个更适合学生使用的 Astro 个人主页模板：可以放课程记录、项目作品、博客笔记，也可以塞一点只有自己觉得好玩的入口。",
-			primaryCta: { label: "看看项目", href: "/projects" },
+			headline: "一个水货，也想把学到的、看过的、想到的都认真留下来。",
+			intro: "这里会记录日常学习、技术交流、番剧感想，以及一些不一定成熟但确实折腾过的小项目。慢慢写，慢慢改，慢慢变成自己的资料库。",
+			primaryCta: { label: "看看博客", href: "/blog" },
 			secondaryCta: { label: "打个招呼", href: "/contact" },
 		},
 		pages: {
 			home: {
 				title: "首页",
-				description: "一个黑色系 Astro 个人网站模板。",
+				description: "一个水货的个人博客，记录学习、番剧、技术和日常。",
 				modules: [
 					{ type: "homeHero" },
-					{ type: "linkGrid", props: { items: [
-						{ label: "课程作业与学习记录", href: "/blog" },
-						{ label: "小项目和奇怪实验", href: "/projects" },
-						{ label: "设计练习与前端复盘", href: "/about" },
-						{ label: "博客、书签和日常入口", href: "/contact" },
-					] } },
+					{
+						type: "linkGrid", props: {
+							items: [
+								{ label: "日常学习与笔记", href: "/blog" },
+								{ label: "番剧感想与碎碎念", href: "/blog" },
+								{ label: "技术交流与折腾记录", href: "/projects" },
+								{ label: "关于这个水货", href: "/about" },
+							]
+						}
+					},
 					{
 						type: "projectGrid",
 						props: {
 							kicker: "Small Builds",
-							title: "最近做的小项目",
-							description: "不一定成熟，也不一定有很大的目标，但每一个都记录了一点学习过程。",
+							title: "最近折腾的小东西",
+							description: "不一定成熟，也不一定厉害，但每一个都记录了一点学习和试错的过程。",
 							featuredOnly: true,
 							limit: 3,
 							columns: 3,
@@ -119,8 +123,8 @@ const siteConfigs = {
 						type: "blogPreview",
 						props: {
 							kicker: "Notes",
-							title: "最新笔记",
-							description: "课堂、前端、设计、生活观察，都可以变成 Markdown 里的碎碎念。",
+							title: "最新碎碎念",
+							description: "学习记录、技术想法、番剧感想和日常观察，都可以变成 Markdown 里的小片段。",
 							limit: 3,
 						},
 					},
@@ -129,32 +133,32 @@ const siteConfigs = {
 			},
 			about: {
 				title: "关于我",
-				description: "关于学生个人主页、学习方向、技能和兴趣的介绍。",
+				description: "关于一个水货的学习方向、兴趣和博客记录。",
 				modules: [
 					{
 						type: "aboutIntro",
 						props: {
 							kicker: "About",
-							heading: "我在课程、代码和兴趣项目之间慢慢探索。",
-							intro: "这个模板适合介绍一个正在学习设计、前端、内容创作或任何个人兴趣方向的学生。",
+							heading: "一个水货，正在学习、看番、写点技术和日常。",
+							intro: "这里不是很厉害的作品集，更像一个慢慢整理出来的个人角落。",
 							profileLabel: "Profile",
-							profile: "喜欢把学到的东西做成页面、小工具和可以回头看的笔记。",
+							profile: "一个水货。喜欢把学到的东西、看完的番剧、踩过的坑和偶尔冒出来的想法写下来。",
 							paragraphs: [
-								"我关心的不只是页面长什么样，也包括内容怎么组织、学习过程怎么留下来、项目以后还能不能继续改。",
-								"这里可以写你的专业、兴趣、最近在学的技术、社团经历，或者只是放一些关于自己的碎碎念。",
+								"这个博客会主要记录日常学习、番剧感想和技术交流。有些内容可能只是阶段性的理解，但留下来以后就能回头看见自己是怎么一点点变化的。",
+								"我希望这里既能放认真整理的笔记，也能放轻一点的碎碎念。技术可以慢慢学，表达也可以慢慢练。",
 							],
 						},
 					},
 					{
 						type: "gameList",
 						props: {
-							title: "主页可以放什么",
-							description: "这些模块都可以在 src/config/site.ts 里替换成自己的栏目。",
+							title: "这里会放什么",
+							description: "目前先把博客当成一个长期记录入口，以后可以继续加自定义板块。",
 							items: [
-								{ label: "学习记录", description: "记录课程、阅读、实验和阶段性复盘。" },
-								{ label: "项目作品", description: "展示课程作业、开源项目和个人练手。" },
-								{ label: "博客笔记", description: "用 Markdown 把想法留下来，支持标签和双链。" },
-								{ label: "简历经历", description: "教育背景、技能、项目经验和可下载的 PDF 简历。" },
+								{ label: "日常学习", description: "记录课程、阅读、工具使用、阶段性复盘和学到的新东西。" },
+								{ label: "番剧感想", description: "写一些看番后的想法、角色印象、剧情感受和个人推荐。" },
+								{ label: "技术交流", description: "整理开发经验、踩坑记录、前端实践和可以分享的小技巧。" },
+								{ label: "个人折腾", description: "放一些小项目、页面改造、灵感记录和未完成的尝试。" },
 							],
 						},
 					},
@@ -162,7 +166,7 @@ const siteConfigs = {
 						type: "skillCloud",
 						props: {
 							title: "技能栈",
-							skills: ["Astro", "TypeScript", "Tailwind CSS", "Design Systems", "UX Engineering", "Content Strategy"],
+							skills: ["Astro", "TypeScript", "Tailwind CSS", "Markdown", "日常学习", "番剧感想", "技术交流"],
 						},
 					},
 					{ type: "contactPanel" },
@@ -170,14 +174,14 @@ const siteConfigs = {
 			},
 			projects: {
 				title: "项目 / 作品集",
-				description: "课程作业、小项目、作品集和实验记录。",
+				description: "一些小项目、技术练习和折腾记录。",
 				modules: [
 					{
 						type: "projectGrid",
 						props: {
 							kicker: "Portfolio",
-							title: "项目 / 作品集",
-							description: "这里展示课程作业、个人项目和实验记录。",
+							title: "项目 / 折腾记录",
+							description: "这里展示个人练习、小项目、页面改造和技术实验。",
 							columns: 2,
 							largePadding: true,
 						},
@@ -186,14 +190,14 @@ const siteConfigs = {
 			},
 			blog: {
 				title: "博客 / 笔记",
-				description: "关于课程、前端、设计、生活和长期学习的笔记。",
+				description: "关于日常学习、番剧感想、技术交流和生活观察的笔记。",
 				modules: [
 					{
 						type: "blogIndex",
 						props: {
 							kicker: "Notes",
 							title: "博客 / 笔记",
-							description: "用 Markdown 记录学习过程、项目复盘、课堂笔记和日常观察。草稿文章会在列表中自动过滤。",
+							description: "用 Markdown 记录日常学习、番剧感想、技术交流和生活里的碎碎念。草稿文章会在列表中自动过滤。",
 							labels: {
 								search: "搜索标题、摘要或标签",
 								all: "全部",
@@ -219,7 +223,7 @@ const siteConfigs = {
 			},
 			resume: {
 				title: "简历 / 经历",
-				description: "学生经历、技能、项目和学习记录。",
+				description: "学习记录、技能、项目和个人经历。",
 				profileLabel: "Profile",
 				emailLabel: "Email",
 				linksLabel: "Links",
@@ -231,7 +235,7 @@ const siteConfigs = {
 						props: {
 							kicker: "Resume",
 							title: "简历 / 经历",
-							description: "此页面展示教育经历、项目经验、技能和可下载的简历文件。当前内容来自 src/config/site.ts。",
+							description: "此页面可以展示学习经历、项目经验、技能和可下载的简历文件。当前内容来自 src/config/site.ts。",
 						},
 					},
 				],
@@ -244,8 +248,8 @@ const siteConfigs = {
 						type: "contactCards",
 						props: {
 							kicker: "Contact",
-							heading: "关于项目、写作或个人网站的想法，欢迎来信。",
-							intro: "把你的 Email、GitHub、Bilibili、Folo、Telegram 或其他公开链接放在这里。",
+							heading: "关于学习、番剧、技术或这个博客，都欢迎来聊。",
+							intro: "这里放着 Email、GitHub、Bilibili 等公开联系方式。",
 						},
 					},
 					{ type: "contactPanel" },
@@ -254,14 +258,14 @@ const siteConfigs = {
 		},
 		contactPanel: {
 			kicker: "Message",
-			heading: "如果你在这里发现了有趣的项目或笔记，欢迎打个招呼。",
+			heading: "如果你在这里发现了有意思的笔记、番剧感想或技术记录，欢迎打个招呼。",
 		},
-		skills: ["Astro", "TypeScript", "Tailwind CSS", "Design Systems", "UX Engineering", "Content Strategy"],
+		skills: ["Astro", "TypeScript", "Tailwind CSS", "Markdown", "日常学习", "番剧感想", "技术交流"],
 		resume: {
-			summary: "一个模板简历区域，用于展示教育、技能、项目亮点和可下载的简历文件。",
+			summary: "一个水货的个人记录区，用来放学习经历、技能、项目和之后可能会补上的简历文件。",
 			details: [
 				{ label: "Location", value: "Campus / Online" },
-				{ label: "Focus", value: "Design Engineering / Frontend / Content" },
+				{ label: "Focus", value: "日常学习 / 番剧感想 / 技术交流" },
 			],
 			links: [
 				{ label: "Projects", href: "/projects" },
@@ -269,25 +273,25 @@ const siteConfigs = {
 				{ label: "Contact", href: "/contact" },
 			],
 			files: [],
-			highlights: ["Add awards, competitions, or course highlights here", "Add open-source contributions or club experience here"],
+			highlights: ["记录日常学习和阶段性复盘", "整理番剧感想、技术笔记和小项目"],
 			sections: [
 				{
 					title: "Experience",
 					items: [
 						{
 							period: "2025 - Now",
-							title: "Student Builder",
-							org: "Campus and spare time",
-							description: "Turning coursework, personal interests, and frontend practice into maintainable projects and notes.",
-							points: ["Learning", "Projects", "Notes"],
+							title: "日常学习记录者",
+							org: "学习与空闲时间",
+							description: "把学到的知识、技术折腾和个人兴趣整理成可以回头看的笔记。",
+							points: ["学习", "技术", "记录"],
 							link: [],
 						},
 						{
 							period: "2024 - 2025",
-							title: "Frontend Learner",
-							org: "Self-directed projects",
-							description: "Practicing Astro, TypeScript, Tailwind CSS, and content-driven websites by building real pages.",
-							points: ["Astro", "TypeScript", "Tailwind CSS"],
+							title: "个人博客维护中",
+							org: "自学与折腾",
+							description: "用 Astro、TypeScript、Tailwind CSS 和 Markdown 搭建自己的内容空间。",
+							points: ["Astro", "Markdown", "博客"],
 							link: [],
 						},
 					],
@@ -297,8 +301,8 @@ const siteConfigs = {
 	},
 	en: {
 		...shared,
-		title: "Student / Design Engineering Learner",
-		description: "A dark-themed Astro personal website template for course records, small projects, blog notes, resume experience, and personal links.",
+		title: "A Casual Personal Blog",
+		description: "Daily learning notes, anime thoughts, tech conversations, and small experiments.",
 		nav: [
 			{ label: "Home", href: "/" },
 			{ label: "About", href: "/about" },
@@ -317,9 +321,9 @@ const siteConfigs = {
 		],
 		today: {
 			title: "Today",
-			current: "Now: organizing course notes",
-			next: "Next: tweak a small project",
-			note: "Goal: make the README clearer",
+			current: "Now: learning something new",
+			next: "Next: write an anime note",
+			note: "Goal: keep the ideas somewhere I can revisit",
 			timeLabel: "My current time",
 			timeZone: "Asia/Shanghai",
 			dateLocale: "en-US",
@@ -334,31 +338,35 @@ const siteConfigs = {
 			socialCardCta: "View profile",
 		},
 		home: {
-			eyebrowNote: "A student homepage hub for projects, notes, and things in progress.",
+			eyebrowNote: "A personal corner for learning notes, anime thoughts, and technical tinkering.",
 			visitorText: "Visitor #{count}, welcome to this small corner",
-			headline: "Putting coursework, experiments, and random ideas in one place.",
-			intro: "A student-friendly Astro personal website template: course records, project portfolios, blog notes, and a few things only you find interesting.",
-			primaryCta: { label: "View projects", href: "/projects" },
+			headline: "Not an expert, just trying to keep what I learn, watch, and think in one place.",
+			intro: "This blog records daily learning, anime impressions, technical notes, and small experiments that may or may not become polished projects.",
+			primaryCta: { label: "Read the blog", href: "/blog" },
 			secondaryCta: { label: "Contact me", href: "/contact" },
 		},
 		pages: {
 			home: {
 				title: "Home",
-				description: "A dark-themed Astro personal website template.",
+				description: "A personal blog for learning, anime, technology, and daily notes.",
 				modules: [
 					{ type: "homeHero" },
-					{ type: "linkGrid", props: { items: [
-						{ label: "Coursework and study notes", href: "/blog" },
-						{ label: "Projects and experiments", href: "/projects" },
-						{ label: "Design practice and frontend review", href: "/about" },
-						{ label: "Blog, bookmarks, and daily entry", href: "/contact" },
-					] } },
+					{
+						type: "linkGrid", props: {
+							items: [
+								{ label: "Daily learning notes", href: "/blog" },
+								{ label: "Anime thoughts", href: "/blog" },
+								{ label: "Tech notes and experiments", href: "/projects" },
+								{ label: "About this blog", href: "/about" },
+							]
+						}
+					},
 					{
 						type: "projectGrid",
 						props: {
 							kicker: "Small Builds",
-							title: "Recent projects",
-							description: "Not always polished, but each one captures a bit of the learning process.",
+							title: "Recent experiments",
+							description: "Not always polished, but each one keeps a trace of learning and trial-and-error.",
 							featuredOnly: true,
 							limit: 3,
 							columns: 3,
@@ -369,7 +377,7 @@ const siteConfigs = {
 						props: {
 							kicker: "Notes",
 							title: "Latest notes",
-							description: "Classroom, frontend, design, life observations can all become random thoughts in Markdown.",
+							description: "Learning notes, tech ideas, anime impressions, and daily observations can all become small Markdown entries.",
 							limit: 3,
 						},
 					},
@@ -378,32 +386,32 @@ const siteConfigs = {
 			},
 			about: {
 				title: "About",
-				description: "About a student personal website, learning direction, skills, and interests.",
+				description: "About a casual learner's interests, notes, and blog direction.",
 				modules: [
 					{
 						type: "aboutIntro",
 						props: {
 							kicker: "About",
-							heading: "I am slowly exploring between courses, code, and interest projects.",
-							intro: "This template is suitable for introducing a student learning design, frontend, content creation, or any personal interest direction.",
+							heading: "A casual learner writing about study, anime, technology, and daily life.",
+							intro: "This is less of a polished portfolio and more of a personal corner that grows over time.",
 							profileLabel: "Profile",
-							profile: "I enjoy turning what I learn into pages, small tools, and notes I can look back on.",
+							profile: "Someone who likes keeping notes about what I learn, what I watch, the bugs I meet, and the ideas that show up along the way.",
 							paragraphs: [
-								"I care not only about how the page looks, but also how content is organized, how the learning process is preserved, and whether projects can be continued later.",
-								"Here you can write about your major, interests, recent technologies, club experiences, or just some random thoughts about yourself.",
+								"This blog focuses on daily learning, anime impressions, and technical conversations. Some posts may be rough, but they still show how my thinking changes over time.",
+								"I want this place to hold both serious notes and lighter thoughts. Skills can grow slowly, and writing can too.",
 							],
 						},
 					},
 					{
 						type: "gameList",
 						props: {
-							title: "What can go on the homepage",
-							description: "These modules can all be replaced with your own sections in src/config/site.ts.",
+							title: "What goes here",
+							description: "For now, this blog is a long-term record. More custom sections can be added later.",
 							items: [
-								{ label: "Study Records", description: "Record courses, reading, experiments, and periodic reviews." },
-								{ label: "Project Portfolio", description: "Showcase coursework, open-source projects, and personal practice." },
-								{ label: "Blog Notes", description: "Capture ideas in Markdown, with support for tags and wiki links." },
-								{ label: "Resume Experience", description: "Education background, skills, project experience, and downloadable PDF resume." },
+								{ label: "Daily Learning", description: "Notes about courses, reading, tools, reviews, and new things learned." },
+								{ label: "Anime Thoughts", description: "Impressions, characters, stories, and personal recommendations." },
+								{ label: "Tech Talk", description: "Development notes, debugging records, frontend practice, and small tips." },
+								{ label: "Personal Experiments", description: "Small projects, page tweaks, ideas, and unfinished attempts." },
 							],
 						},
 					},
@@ -411,22 +419,22 @@ const siteConfigs = {
 						type: "skillCloud",
 						props: {
 							title: "Skills",
-							skills: ["Astro", "TypeScript", "Tailwind CSS", "Design Systems", "UX Engineering", "Content Strategy"],
+							skills: ["Astro", "TypeScript", "Tailwind CSS", "Markdown", "Daily Learning", "Anime Notes", "Tech Talk"],
 						},
 					},
 					{ type: "contactPanel" },
 				],
 			},
 			projects: {
-				title: "Projects / Portfolio",
-				description: "Coursework, small projects, portfolio pieces, and experiment records.",
+				title: "Projects / Experiments",
+				description: "Small projects, technical practice, and experiment records.",
 				modules: [
 					{
 						type: "projectGrid",
 						props: {
 							kicker: "Portfolio",
-							title: "Projects / Portfolio",
-							description: "Showcasing coursework, personal projects, and experiment records.",
+							title: "Projects / Experiments",
+							description: "Personal practice, small projects, page tweaks, and technical experiments.",
 							columns: 2,
 							largePadding: true,
 						},
@@ -435,14 +443,14 @@ const siteConfigs = {
 			},
 			blog: {
 				title: "Blog / Notes",
-				description: "Notes about coursework, frontend, design, life, and long-term learning.",
+				description: "Notes about daily learning, anime thoughts, technology, and life.",
 				modules: [
 					{
 						type: "blogIndex",
 						props: {
 							kicker: "Notes",
 							title: "Blog / Notes",
-							description: "Write learning logs, project reviews, class notes, and daily observations in Markdown. Drafts are hidden from lists automatically.",
+							description: "Write daily learning notes, anime thoughts, technical conversations, and small observations in Markdown. Drafts are hidden from lists automatically.",
 							labels: {
 								search: "Search title, summary, or tags",
 								all: "All",
@@ -468,7 +476,7 @@ const siteConfigs = {
 			},
 			resume: {
 				title: "Resume / Experience",
-				description: "Student experience, skills, projects, and learning records.",
+				description: "Learning records, skills, projects, and personal experience.",
 				profileLabel: "Profile",
 				emailLabel: "Email",
 				linksLabel: "Links",
@@ -480,7 +488,7 @@ const siteConfigs = {
 						props: {
 							kicker: "Resume",
 							title: "Resume / Experience",
-							description: "Use this page for education, club experience, projects, skills, and resume files. The current content comes from src/config/site.ts.",
+							description: "Use this page for learning experience, projects, skills, and resume files. The current content comes from src/config/site.ts.",
 						},
 					},
 				],
@@ -493,8 +501,8 @@ const siteConfigs = {
 						type: "contactCards",
 						props: {
 							kicker: "Contact",
-							heading: "Send a note about projects, writing, or personal websites.",
-							intro: "Add your email, GitHub, Bilibili, Folo, Telegram, or any public contact link here.",
+							heading: "Feel free to talk about learning, anime, technology, or this blog.",
+							intro: "Email, GitHub, Bilibili, and other public links live here.",
 						},
 					},
 					{ type: "contactPanel" },
@@ -503,14 +511,14 @@ const siteConfigs = {
 		},
 		contactPanel: {
 			kicker: "Message",
-			heading: "If you find an interesting project or note here, feel free to say hi.",
+			heading: "If you find an interesting note, anime thought, or technical record here, feel free to say hi.",
 		},
-		skills: ["Astro", "TypeScript", "Tailwind CSS", "Design Systems", "UX Engineering", "Content Strategy"],
+		skills: ["Astro", "TypeScript", "Tailwind CSS", "Markdown", "Daily Learning", "Anime Notes", "Tech Talk"],
 		resume: {
-			summary: "A template resume area for education, skills, projects, highlights, and downloadable resume files.",
+			summary: "A personal record area for learning experience, skills, projects, and future resume files.",
 			details: [
 				{ label: "Location", value: "Campus / Online" },
-				{ label: "Focus", value: "Design Engineering / Frontend / Content" },
+				{ label: "Focus", value: "Daily Learning / Anime Notes / Tech Talk" },
 			],
 			links: [
 				{ label: "Projects", href: "/projects" },
@@ -518,25 +526,25 @@ const siteConfigs = {
 				{ label: "Contact", href: "/contact" },
 			],
 			files: [],
-			highlights: ["Add awards, competitions, or course highlights here", "Add open-source contributions or club experience here"],
+			highlights: ["Recording daily learning and periodic reviews", "Organizing anime thoughts, technical notes, and small projects"],
 			sections: [
 				{
 					title: "Experience",
 					items: [
 						{
 							period: "2025 - Now",
-							title: "Student Builder",
-							org: "Campus and spare time",
-							description: "Turning coursework, personal interests, and frontend practice into maintainable projects and notes.",
-							points: ["Learning", "Projects", "Notes"],
+							title: "Daily Learning Note Taker",
+							org: "Study and spare time",
+							description: "Turning learning, technical tinkering, and personal interests into notes I can revisit.",
+							points: ["Learning", "Tech", "Notes"],
 							link: [],
 						},
 						{
 							period: "2024 - 2025",
-							title: "Frontend Learner",
-							org: "Self-directed projects",
-							description: "Practicing Astro, TypeScript, Tailwind CSS, and content-driven websites by building real pages.",
-							points: ["Astro", "TypeScript", "Tailwind CSS"],
+							title: "Personal Blog Maintainer",
+							org: "Self-learning and experiments",
+							description: "Building a personal content space with Astro, TypeScript, Tailwind CSS, and Markdown.",
+							points: ["Astro", "Markdown", "Blog"],
 							link: [],
 						},
 					],
